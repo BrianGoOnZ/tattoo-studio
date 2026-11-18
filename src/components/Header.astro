@@ -1,8 +1,11 @@
+---
+const ruta = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
 <header>
     <a href="/" id="logo">Vesper Studio</a>
     <nav>
-        <a href="/">Inicio</a>
-        <a href="/galeria">Galería</a>
-        <a href="/cotizar">Cotizar</a>
+        <a href="/" class:list={[{ activo: ruta === '/' }]}>Inicio</a>
+        <a href="/galeria" class:list={[{ activo: ruta === '/galeria' }]}>Galería</a>
+        <a href="/cotizar" class="boton">Cotizar</a>
     </nav>
 </header>

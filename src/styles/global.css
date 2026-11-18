@@ -108,6 +108,12 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #222;
 }
 
 #logo {
@@ -116,16 +122,144 @@ header {
 
 nav {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-/* --- Footer: bloques en fila, sin viñetas en las listas --- */
+nav a:not(.boton) {
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+nav a:not(.boton)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--acento);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+nav a:not(.boton):hover::after {
+  transform: scaleX(1);
+}
+
+nav a.activo::after {
+  transform: scaleX(1);
+}
+
+nav .boton {
+  padding: 0.5rem 1.25rem;
+}
+
+/* --- Footer: 4 columnas con título y línea de © abajo --- */
 footer {
+  margin-top: 4rem;
+  padding: 3rem 2rem 1.5rem;
+  border-top: 1px solid #222;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+footer h3 {
+  font-family: "Cinzel", serif;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+footer p,
+footer a {
+  font-size: 0.9rem;
+}
+
+footer li {
+  margin-bottom: 0.5rem;
+}
+
+.redes {
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin: 1rem 0;
-  padding: 1rem 2rem;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.redes a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  transition:
+    border-color 0.3s,
+    color 0.3s;
+}
+
+.redes a:hover {
+  border-color: var(--acento);
+}
+
+.redes svg {
+  width: 20px;
+  height: 20px;
+  /* completa aquí: que el icono tome el color del texto del enlace (fill con currentColor) */
+}
+
+.redes li {
+  margin-bottom: 0;
+}
+
+.redes {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.redes a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  transition:
+    border-color 0.3s,
+    color 0.3s;
+}
+
+.redes a:hover {
+  border-color: var(--acento);
+}
+
+.redes svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.redes li {
+  margin-bottom: 0;
+}
+
+.footer-copy {
+  max-width: 1100px;
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid #222;
+  text-align: center;
+  color: #888;
+  font-size: 0.85rem;
 }
 
 footer ul {
@@ -321,10 +455,20 @@ input[type="checkbox"] {
   #artista img {
     max-width: 100%;
   }
+}
 
-  /* Footer apilado y centrado */
-  footer {
-    flex-direction: column;
-    align-items: center;
+/* Celulares angostos (480px o menos) */
+@media (max-width: 480px) {
+  header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  #galeria,
+  #estudio,
+  #artista,
+  #ubicacion {
+    padding: 1rem;
   }
 }
