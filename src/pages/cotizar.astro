@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout titulo="Cotizar Tatuaje">
     <section id="cotizar">
-        <h1>Cotizar Tatuaje</h1>
+        <h1>Cotizar Tatuaje | Vesper Studio</h1>
         <form id="formulario-cotizacion">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" required />
@@ -65,6 +65,11 @@ import Layout from '../layouts/Layout.astro';
 
             <label for="comentario">Comentario Adicional</label>
             <textarea id="comentario" name="comentario"></textarea>
+
+            <div class="aceptar">
+                <input type="checkbox" id="mayor-edad" name="mayor-edad" required>
+                <label for="mayor-edad">Confirmo que tengo 18 años o más y acepto los <a href="/terminos">términos y condiciones</a></label>
+            </div>
 
             <button type="submit" class="boton">Enviar Cotización</button>
         </form>

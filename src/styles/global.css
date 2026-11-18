@@ -1,21 +1,52 @@
+/* ==========================================================================
+   VESPER STUDIO · global.css
+
+   ÍNDICE
+   1. Variables y reset
+   2. Base: cuerpo, enlaces y tipografía
+   3. Componentes reutilizables: botón y cuadrícula
+   4. Estructura global: header, footer y secciones
+   5. Inicio: hero, estudio, artista y ubicación
+   6. Galería
+   7. Formulario de cotización
+   8. Páginas: gracias y legales
+   9. Responsive (siempre al final)
+
+   NOTA: el orden importa. Si dos reglas tienen la misma prioridad,
+   gana la que está más abajo. Por eso el responsive va al final.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIABLES Y RESET
+   ========================================================================== */
+
+/* Paleta del sitio: cambia aquí un color y se actualiza en toda la página */
+:root {
+  --fondo: #0d0d0d; /* negro de fondo */
+  --texto: #ede8e0; /* blanco hueso */
+  --acento: #b3202a; /* rojo: botones, hover y bordes activos */
+}
+
+/* Reset: quita los márgenes por defecto del navegador y hace que el
+   padding no agrande las cajas */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-:root {
-  --fondo: #0d0d0d;
-  --texto: #ede8e0;
-  --acento: #b3202a;
-}
+/* ==========================================================================
+   2. BASE: CUERPO, ENLACES Y TIPOGRAFÍA
+   ========================================================================== */
 
+/* Fondo y color de texto de toda la página */
 body {
   background-color: var(--fondo);
   color: var(--texto);
   font-family: system-ui, sans-serif;
 }
 
+/* Enlaces: sin subrayado, rojos al pasar el mouse */
 a {
   color: var(--texto);
   text-decoration: none;
@@ -24,6 +55,52 @@ a:hover {
   color: var(--acento);
 }
 
+/* Fuente de títulos y logo (Cinzel se carga en Layout.astro) */
+h1,
+h2,
+#logo {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   3. COMPONENTES REUTILIZABLES
+   ========================================================================== */
+
+/* Botón rojo. Se usa con class="boton" en enlaces <a> y en <button> */
+.boton {
+  display: inline-block;
+  background-color: var(--acento);
+  color: var(--texto);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+/* Repite el color del texto porque "a:hover" lo cambiaría a rojo
+   y se perdería sobre el fondo rojo del botón */
+.boton:hover {
+  background-color: #8a1820;
+  color: var(--texto);
+}
+
+/* Cuadrícula adaptable: tantas columnas de mínimo 200px como quepan.
+   La usan la sección "estudio" y la galería */
+.cuadricula {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.cuadricula img {
+  width: 100%;
+}
+
+/* ==========================================================================
+   4. ESTRUCTURA GLOBAL: HEADER, FOOTER Y SECCIONES
+   ========================================================================== */
+
+/* --- Header: logo a la izquierda, menú a la derecha --- */
 header {
   display: flex;
   justify-content: space-between;
@@ -40,41 +117,7 @@ nav {
   gap: 1rem;
 }
 
-#hero {
-  display: flex;
-  align-items: center;
-  margin: 2rem auto;
-  padding: 0 2rem;
-  gap: 2rem;
-}
-
-#hero img {
-  max-width: 50%;
-}
-
-#galeria {
-  padding: 2rem;
-}
-
-#hero,
-#galeria,
-#estudio,
-#artista,
-#ubicacion {
-  max-width: 1100px;
-  margin-inline: auto;
-}
-
-.cuadricula {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-
-.cuadricula img {
-  width: 100%;
-}
-
+/* --- Footer: bloques en fila, sin viñetas en las listas --- */
 footer {
   display: flex;
   justify-content: space-between;
@@ -87,34 +130,92 @@ footer ul {
   list-style: none;
 }
 
-.boton {
-  display: inline-block;
-  background-color: var(--acento);
-  color: var(--texto);
-  padding: 0.75rem 1.5rem;
-  border: none;
+/* --- Secciones: ancho máximo y centradas --- */
+#hero,
+#galeria,
+#estudio,
+#artista,
+#ubicacion {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+/* Espacio interior de las secciones (el hero lleva el suyo aparte) */
+#galeria,
+#estudio,
+#artista,
+#ubicacion {
+  padding: 2rem;
+}
+
+/* ==========================================================================
+   5. INICIO: HERO, ESTUDIO, ARTISTA Y UBICACIÓN
+   ========================================================================== */
+
+/* --- Hero: texto a un lado, imagen al otro --- */
+#hero {
+  display: flex;
+  align-items: center;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  gap: 2rem;
+}
+
+#hero img {
+  max-width: 50%;
+}
+
+/* --- Artista: foto a un lado, biografía al otro --- */
+#artista {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+#artista img {
+  max-width: 40%;
+}
+
+/* --- Ubicación: horarios y mapa --- */
+#ubicacion ul {
+  list-style: none;
+  margin: 1rem 0;
+}
+
+#ubicacion iframe {
+  width: 100%;
+  height: 350px;
+  border: 0;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.boton:hover {
-  background-color: #8a1820;
-  color: var(--texto);
 }
 
-h1,
-h2,
-#logo {
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.05em;
+/* ==========================================================================
+   6. GALERÍA
+   ========================================================================== */
+
+/* Campo de búsqueda por palabras clave */
+#buscador {
+  margin: 1rem 0 1.5rem;
 }
 
+/* Texto debajo de cada trabajo */
+figcaption {
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   7. FORMULARIO DE COTIZACIÓN
+   ========================================================================== */
+
+/* Página del formulario: columna angosta y centrada */
 #cotizar {
   max-width: 600px;
   margin: 2rem auto;
   padding: 0 2rem;
 }
 
+/* Campos apilados en columna */
 #formulario-cotizacion {
   display: flex;
   flex-direction: column;
@@ -122,6 +223,7 @@ h2,
   margin-top: 1.5rem;
 }
 
+/* Aspecto de todos los campos */
 input,
 textarea,
 select {
@@ -134,6 +236,7 @@ select {
   font-family: inherit;
 }
 
+/* Campo activo: borde rojo */
 input:focus,
 textarea:focus,
 select:focus {
@@ -141,11 +244,30 @@ select:focus {
   outline: none;
 }
 
+/* Evita el fondo claro que el navegador pone al autocompletar */
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px #1a1a1a inset;
   -webkit-text-fill-color: var(--texto);
 }
 
+/* Casilla de mayoría de edad: checkbox junto a su texto */
+.aceptar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+/* El checkbox no debe ocupar el 100% como los demás campos */
+input[type="checkbox"] {
+  width: auto;
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   8. PÁGINAS: GRACIAS Y LEGALES
+   ========================================================================== */
+
+/* Confirmación después de enviar el formulario */
 #gracias {
   max-width: 600px;
   margin: 4rem auto;
@@ -157,55 +279,36 @@ input:-webkit-autofill {
   align-items: center;
 }
 
-#estudio,
-#artista,
-#ubicacion {
-  padding: 2rem;
+/* Términos, garantías y políticas (class="legal") */
+.legal {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 2rem;
 }
 
-#ubicacion ul {
-  list-style: none;
-  margin: 1rem 0;
-}
-#ubicacion iframe {
-  width: 100%;
-  height: 350px;
-  border: 0;
-  border-radius: 4px;
+.legal h2 {
+  margin: 1.5rem 0 0.5rem;
 }
 
-#artista {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-#artista img {
-  max-width: 40%;
-}
-
-#buscador {
-  margin: 1rem 0 1.5rem;
-}
-figcaption {
-  padding: 0.5rem 0;
-  font-size: 0.9rem;
-}
+/* ==========================================================================
+   9. RESPONSIVE (pantallas de 768px o menos)
+   Va siempre al final para que sus reglas pisen a las de escritorio.
+   ========================================================================== */
 
 @media (max-width: 768px) {
-  #hero {
+  /* Hero y artista se apilan en columna */
+  #hero,
+  #artista {
     flex-direction: column;
   }
 
+  /* Las imágenes ocupan todo el ancho al apilarse */
   #hero img,
   #artista img {
     max-width: 100%;
   }
 
-  #artista {
-    flex-direction: column;
-  }
-
+  /* Footer apilado y centrado */
   footer {
     flex-direction: column;
     align-items: center;
