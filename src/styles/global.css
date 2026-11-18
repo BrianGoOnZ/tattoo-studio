@@ -94,6 +94,8 @@ h2,
 }
 .cuadricula img {
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 /* ==========================================================================
@@ -202,6 +204,18 @@ footer ul {
 figcaption {
   padding: 0.5rem 0;
   font-size: 0.9rem;
+}
+
+.cuadricula figure {
+  overflow: hidden;
+}
+
+.cuadricula figure img {
+  transition: transform 0.3s;
+}
+
+.cuadricula figure:hover img {
+  transform: scale(1.05);
 }
 
 /* ==========================================================================
