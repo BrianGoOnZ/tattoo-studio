@@ -102,7 +102,7 @@ h2,
    4. ESTRUCTURA GLOBAL: HEADER, FOOTER Y SECCIONES
    ========================================================================== */
 
-/* --- Header: logo a la izquierda, menú a la derecha --- */
+/* --- Header: logo a la izquierda, menú a la derecha, fijo arriba --- */
 header {
   display: flex;
   justify-content: space-between;
@@ -126,6 +126,7 @@ nav {
   gap: 1.5rem;
 }
 
+/* Enlaces del menú con línea roja animada (el botón no la lleva) */
 nav a:not(.boton) {
   position: relative;
   padding: 0.25rem 0;
@@ -148,6 +149,7 @@ nav a:not(.boton):hover::after {
   transform: scaleX(1);
 }
 
+/* Página actual: la línea queda fija (clase "activo" desde Header.astro) */
 nav a.activo::after {
   transform: scaleX(1);
 }
@@ -186,39 +188,11 @@ footer li {
   margin-bottom: 0.5rem;
 }
 
-.redes {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
+footer ul {
+  list-style: none;
 }
 
-.redes a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #333;
-  border-radius: 50%;
-  transition:
-    border-color 0.3s,
-    color 0.3s;
-}
-
-.redes a:hover {
-  border-color: var(--acento);
-}
-
-.redes svg {
-  width: 20px;
-  height: 20px;
-  /* completa aquí: que el icono tome el color del texto del enlace (fill con currentColor) */
-}
-
-.redes li {
-  margin-bottom: 0;
-}
-
+/* Iconos de redes sociales: círculos con SVG */
 .redes {
   display: flex;
   gap: 0.75rem;
@@ -262,10 +236,6 @@ footer li {
   font-size: 0.85rem;
 }
 
-footer ul {
-  list-style: none;
-}
-
 /* --- Secciones: ancho máximo y centradas --- */
 #hero,
 #galeria,
@@ -297,8 +267,26 @@ footer ul {
   gap: 2rem;
 }
 
+/* Animación de entrada: aparece subiendo 20px */
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* El texto entra primero */
+#hero div {
+  animation: aparecer 0.8s ease-out both;
+}
+
 #hero img {
   max-width: 50%;
+  animation: aparecer 0.8s ease-out 0.2s both;
 }
 
 /* --- Artista: foto a un lado, biografía al otro --- */
@@ -340,6 +328,7 @@ figcaption {
   font-size: 0.9rem;
 }
 
+/* Efecto al pasar el mouse: la foto crece dentro de su marco */
 .cuadricula figure {
   overflow: hidden;
 }
@@ -350,6 +339,11 @@ figcaption {
 
 .cuadricula figure:hover img {
   transform: scale(1.05);
+}
+
+/* Al filtrar, las fotos conservan su tamaño en lugar de estirarse */
+#galeria .cuadricula {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 /* ==========================================================================
