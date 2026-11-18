@@ -1,16 +1,47 @@
 ---
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout titulo="Vesper Studio">
+
+	<section id="hero">
+		<div>
+			<h1>Bienvenidos a Vesper Studio</h1>
+			<p>Tu estudio de tatuajes favorito</p>
+			<a href="/cotizar" class="boton">Cotizar Tatuaje</a>
+		</div>
+		<img src="/img/estudio/studio.jpg" alt="Interior del estudio con sillón de tatuar negro, sofá de piel y pared de papel tapiz con palmeras">
+	</section>
+
+	<section id="estudio">
+		<h2>Estudio</h2>
+		<p>Los atendemos en un hermoso lugar</p>
+		<div class="cuadricula">
+			<img src="/img/estudio/interior1.jpeg" alt="Tatuador con guantes azules preparando una aguja sobre su mesa de trabajo">
+			<img src="/img/estudio/interior2.jpg" alt="Tatuador con guantes negros y cubrebocas sosteniendo una máquina de tatuar">
+			<img src="/img/estudio/interior3.jpg" alt="Tinta y material sobre una mesa cubierta con plástico, listos para tatuar">
+		</div>
+	</section>
+
+	<section id="artista">
+		<img src="/img/artist/artist.webp" alt="foto del tatuador" />
+		<div>
+			<h2>Brian Gonzalez Ramirez</h2>
+			<p>5 años de experiencia, me especializo en anime pero puedo recrear cualquier tatuaje</p>
+		</div>
+	</section>
+
+	<section id="ubicacion">
+		<h2>Ubicación</h2>
+		<div>
+			<p>Isabel Almanza 101 Carlos Luna</p>
+			<ul>
+				<li>Lunes a viernes de 15:00 a 23:00</li>
+				<li>Sábado de 13:00 a 23:00</li>
+				<li>Domingo: cerrado</li>
+			</ul>
+		</div>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3643.235305883487!2d-104.63956472466145!3d24.05801687689738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x869bb636408bfe9f%3A0x45cbf92ac38b9caa!2sIsabel%20Almanza%20101%2C%20Carlos%20Luna%2C%2034205%20Durango%2C%20Dgo.!5e0!3m2!1ses!2smx!4v1794889111431!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Mapa del estudio"></iframe>
+	</section>
+
+</Layout>

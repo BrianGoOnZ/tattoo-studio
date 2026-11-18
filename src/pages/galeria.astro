@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout titulo="Galería | Vesper Studio">
+
+    <section id="galeria">
+
+        <h1>Nuestros trabajos</h1>
+
+        <label for="buscador">Buscar ideas por palabras clave</label>
+        <input type="search" id="buscador" placeholder="Ej. anime, calavera, flores" />
+
+        <div class="cuadricula">
+            <figure data-etiquetas="blackwork negro antebrazo brazo">
+                <img src="/img/tattoos/blackwork.jpg" alt="tatuaje estilo blackwork en el antebrazo" />
+                <figcaption>Tatuaje blackwork</figcaption>
+            </figure>
+            <figure data-etiquetas="flores color antebrazo brazo">
+                <img src="/img/tattoos/flowers.jpg" alt="tatuaje de flores de colores en el antebrazo" />
+                <figcaption>Tatuaje de flores</figcaption>
+            </figure>
+            <figure data-etiquetas="calavera viejo oeste pierna">
+                <img src="/img/tattoos/skull.webp" alt="Calavera estilo viejo oeste en la pierna" />
+                <figcaption>Tatuaje de calavera</figcaption>
+            </figure>
+            <figure data-etiquetas="reloj blanco negro antebrazo brazo">
+                <img src="/img/tattoos/forearm.jpg" alt="Tatuaje de reloj antiguo a blanco y negro" />
+                <figcaption>Tatuaje de reloj</figcaption>
+            </figure>
+            <figure data-etiquetas="anime demon slayer">
+                <img src="/img/tattoos/anime.webp" alt="Tatuaje de demon slayer" />
+                <figcaption>Tatuaje de anime</figcaption>
+            </figure>
+            <figure data-etiquetas="manga completa flores color brazo">
+                <img src="/img/tattoos/sleeve.jpg" alt="Manga completa de flores y colores en el brazo" />
+                <figcaption>Manga completa de flores</figcaption>
+            </figure>
+
+        </div>
+
+    </section>
+    <script>
+        const buscador = document.querySelector<HTMLInputElement>('#buscador');
+        const trabajos = document.querySelectorAll<HTMLElement>('.cuadricula figure');
+
+        if (buscador) {
+            buscador.addEventListener('input', () => {
+            const texto = buscador.value.toLowerCase().trim();
+
+            trabajos.forEach((trabajo) => {
+                const etiquetas = trabajo.dataset.etiquetas ?? '';
+                const coincide = etiquetas.includes(texto);
+                trabajo.hidden = !coincide;
+            });
+            });
+        }
+    </script>
+
+</Layout>

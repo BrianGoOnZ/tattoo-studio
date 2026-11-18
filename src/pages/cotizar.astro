@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout titulo="Cotizar Tatuaje">
+    <section id="cotizar">
+        <h1>Cotizar Tatuaje</h1>
+        <form id="formulario-cotizacion">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required />
+
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" required />
+
+            <label for="idea">Describe tu idea</label>
+            <textarea id="idea" name="idea" required></textarea>
+
+            <label for="tamano">Tamaño del tatuaje</label>
+            <select id="tamano" name="tamano" required>
+                <option value="">Selecciona un tamaño</option>
+                <option value="Pequeño">Pequeño</option>
+                <option value="Mediano">Mediano</option>
+                <option value="Grande">Grande</option>
+            </select>
+
+            <label for="color">Color del tatuaje</label>
+            <select id="color" name="color" required>
+                <option value="">Selecciona el tipo</option>
+                <option value="Blanco y Negro">Blanco y Negro</option>
+                <option value="A color">A color</option>
+            </select>
+
+            <label for="zona">Zona del cuerpo</label>
+            <select id="zona" name="zona" required>
+                <option value="">Selecciona la zona</option>
+                <option value="Brazo">Brazo</option>
+                <option value="Pierna">Pierna</option>
+                <option value="Espalda">Espalda</option>
+                <option value="Pecho">Pecho</option>
+            </select>
+
+            <label for="alergias">Alergias</label>
+            <textarea id="alergias" name="alergias"></textarea>
+
+            <label for="primer-tatuaje">¿Es tu primer tatuaje?</label>
+            <select id="primer-tatuaje" name="primer-tatuaje" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="disponibilidad">Disponibilidad para agendar</label>
+            <select id="disponibilidad" name="disponibilidad" required>
+                <option value="">Selecciona un día</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sábado">Sábado</option>
+            </select>
+
+            <label for="referencias">Sube tus referencias</label>
+            <input type="file" id="referencias" name="referencias" accept="image/*" multiple />
+
+            <label for="comentario">Comentario Adicional</label>
+            <textarea id="comentario" name="comentario"></textarea>
+
+            <button type="submit" class="boton">Enviar Cotización</button>
+        </form>
+    </section>
+</Layout>
+<script>
+    const formulario = document.querySelector<HTMLFormElement>('#formulario-cotizacion');
+        if (formulario) {
+            formulario.addEventListener('submit', (evento) => {
+                evento.preventDefault();
+                const datos = new FormData(formulario);
+
+                const nombre = datos.get('nombre');
+                const idea = datos.get('idea');
+                const telefono = datos.get('telefono')
+                const tamano = datos.get('tamano')
+                const color = datos.get('color')
+                const zona = datos.get('zona')
+                const alergias = datos.get('alergias')
+                const primerTatuaje = datos.get('primer-tatuaje')
+                const disponibilidad = datos.get('disponibilidad')
+                const comentario = datos.get('comentario')
+
+                const mensaje = [
+                    `Hola, soy ${nombre} (tel: ${telefono}).`,
+                    'Quiero cotizar un tatuaje:',
+                    `- Idea: ${idea}`,
+                    `- Tamaño: ${tamano}`,
+                    `- Color: ${color}`,
+                    `- Zona: ${zona}`,
+                    `- Alergias: ${alergias}`,
+                    `- Primer tatuaje: ${primerTatuaje}`,
+                    `- Disponibilidad: ${disponibilidad}`,
+                    `- Comentario: ${comentario}`,
+                    'Te envío mis referencias por este chat.',
+                ].join('\n');
+
+                const url = `https://wa.me/5216695054567?text=${encodeURIComponent(mensaje)}`;
+                window.open(url, "_blank");
+                window.location.href='/gracias'
+            });
+        }
+</script>
